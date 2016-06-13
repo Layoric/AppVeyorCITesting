@@ -13,6 +13,7 @@ environment:
   AWS_ACCESS_KEY_ID: AKIAIQEGAB4SXNC5N6AQ
   AWS_SECRET_ACCESS_KEY: 
     secure: S5wgNSYY0Jthe6P0gp+gz8S1wgPdjIcbKxVyuNMLfqKPAfngcXT/I9wgeYmHYwN7
+  AWS_DEFAULT_REGION: ap-southeast-2
 test_script:
 - cmd: packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.2.1\tools\nunit3-console.exe" -targetargs:"/domain:single AppVeyorCITesting\AppVeyorCITesting.Tests\bin\Release\AppVeyorCITesting.Tests.dll" -output:coverage.xml
 after_test:
