@@ -10,6 +10,9 @@ configuration:
 environment:
   COVERALLS_REPO_TOKEN:
     secure: 3BmUK4nB8kdRgKzgTbp0wNVonHANhUb7qQ8UxTDhkn2tXnvNHMgyhmxKAxL2j+Tc
+  AWS_ACCESS_KEY_ID: AKIAIQEGAB4SXNC5N6AQ
+  AWS_SECRET_ACCESS_KEY: 
+    secure: S5wgNSYY0Jthe6P0gp+gz8S1wgPdjIcbKxVyuNMLfqKPAfngcXT/I9wgeYmHYwN7
 test_script:
 - cmd: packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.2.1\tools\nunit3-console.exe" -targetargs:"/domain:single AppVeyorCITesting\AppVeyorCITesting.Tests\bin\Release\AppVeyorCITesting.Tests.dll" -output:coverage.xml
 after_test:
@@ -28,3 +31,5 @@ deploy:
   set_public: false
   folder: release
   artifact: release-deploy
+after_deploy:
+  - cmd: aws deploy create-deployment --application-name appveyor_testing --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name appveyor_testing_group --s3-location bucket=layoric-deploy,bundleType=zip,key=release/AppVeyorCITesting/AppVeyorCITesting/release-deploy.zip
