@@ -12,7 +12,7 @@ after_build:
 - cmd: packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"packages\NUnit.ConsoleRunner.3.2.1\tools\nunit3-console.exe" -targetargs:"/domain:single AppVeyorCITesting\AppVeyorCITesting.Tests\bin\Debug\AppVeyorCITesting.Tests.dll" -output:coverage.xml
 - cmd: packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
 artifacts:
-  - path: AppVeyorCITesting\AppVeyorCITesting\bin\Release\*.*
+  - path: AppVeyorCITesting\AppVeyorCITesting\bin\Debug\*.*
     name: release-deploy.zip
 deploy:
   provider: S3
