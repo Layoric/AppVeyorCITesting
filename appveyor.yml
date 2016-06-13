@@ -13,7 +13,7 @@ after_build:
 - cmd: packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
 artifacts:
   - path: AppVeyorCITesting\AppVeyorCITesting\bin\Debug
-    name: release-deploy.zip
+    name: release-deploy
 deploy:
   provider: S3
   access_key_id: AKIAIQEGAB4SXNC5N6AQ
@@ -22,4 +22,4 @@ deploy:
   bucket: layoric-deploy
   set_public: false
   folder: release
-  artifact: release-deploy.zip
+  artifact: release-deploy
