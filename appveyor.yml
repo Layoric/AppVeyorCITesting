@@ -15,7 +15,7 @@ test_script:
 after_test:
 - cmd: packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
 - ps: 'Add-Type -Assembly "System.IO.Compression.FileSystem";'
-- ps: '[System.IO.Compression.ZipFile]::CreateFromDirectory("AppVeyorCITesting\AppVeyorCITesting\bin\Release", "release-deploy.zip");'
+- ps: '[System.IO.Compression.ZipFile]::CreateFromDirectory("%APPVEYOR_BUILD_FOLDER%\AppVeyorCITesting\AppVeyorCITesting\bin\Release", "%APPVEYOR_BUILD_FOLDER%\release-deploy.zip");'
 artifacts:
   - path: release-deploy.zip
     name: release-deploy
